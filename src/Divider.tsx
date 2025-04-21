@@ -40,8 +40,8 @@ const Divider: React.FC<SpringenDividerProps> = ({
           clipStart.set(newStart);
           clipEnd.set(newEnd);
         } else {
-          clipStart.jump(newStart);
-          clipEnd.jump(newEnd);
+          clipStart.set(newStart);
+          clipEnd.set(newEnd);
           indicatorVisible.set('visible');
         }
       }

@@ -39,9 +39,9 @@ const Tag: React.FC<SpringenTagProps> = ({
           clipEnd.set(newEnd);
           indicatorWidth.set(currentEl.offsetWidth);
         } else {
-          clipStart.jump(newStart);
-          clipEnd.jump(newEnd);
-          indicatorWidth.jump(currentEl.offsetWidth);
+          clipStart.set(newStart);
+          clipEnd.set(newEnd);
+          indicatorWidth.set(currentEl.offsetWidth);
           indicatorVisible.set('visible');
         }
       }

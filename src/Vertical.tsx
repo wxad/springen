@@ -42,9 +42,9 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
           clipEnd.set(newEnd);
           indicatorHeight.set(currentEl.offsetHeight);
         } else {
-          clipStart.jump(newStart);
-          clipEnd.jump(newEnd);
-          indicatorHeight.jump(currentEl.offsetHeight);
+          clipStart.set(newStart);
+          clipEnd.set(newEnd);
+          indicatorHeight.set(currentEl.offsetHeight);
           indicatorVisible.set('visible');
         }
       }
