@@ -1,8 +1,8 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
-import { SpringenVerticalProps, MOTION_CONFIG } from './types';
+import { SpringenVerticalProps, MOTION_CONFIG, SpringenItemValue } from './types';
 
-const Vertical: React.FC<SpringenVerticalProps> = ({
+const Vertical = <T extends SpringenItemValue>({
   gap = 14,
   items,
   value,
@@ -16,7 +16,7 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
   indicatorClassName = '',
   indicatorStyle = {},
   ...props
-}) => {
+}: SpringenVerticalProps<T>) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const clipStart = useSpring(0, MOTION_CONFIG);
   const clipEnd = useSpring(0, MOTION_CONFIG);

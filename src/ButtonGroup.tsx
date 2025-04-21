@@ -1,8 +1,8 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
-import { SpringenButtonGroupProps, MOTION_CONFIG } from './types';
+import { SpringenButtonGroupProps, MOTION_CONFIG, SpringenItemValue } from './types';
 
-const ButtonGroup: React.FC<SpringenButtonGroupProps> = ({
+const ButtonGroup = <T extends SpringenItemValue>({
   gap = 0,
   items,
   value,
@@ -15,7 +15,7 @@ const ButtonGroup: React.FC<SpringenButtonGroupProps> = ({
   indicatorStyle = {},
   style = {},
   ...props
-}) => {
+}: SpringenButtonGroupProps<T>) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const clipStart = useSpring(0, MOTION_CONFIG);
   const clipEnd = useSpring(0, MOTION_CONFIG);

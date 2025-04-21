@@ -1,8 +1,8 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
-import { SpringenTagProps, MOTION_CONFIG } from './types';
+import { SpringenTagProps, MOTION_CONFIG, SpringenItemValue } from './types';
 
-const Tag: React.FC<SpringenTagProps> = ({
+const Tag = <T extends SpringenItemValue>({
   gap = 8,
   items,
   value,
@@ -13,7 +13,7 @@ const Tag: React.FC<SpringenTagProps> = ({
   activeItemStyle = {},
   style = {},
   ...props
-}) => {
+}: SpringenTagProps<T>) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const clipStart = useSpring(0, MOTION_CONFIG);
   const clipEnd = useSpring(0, MOTION_CONFIG);

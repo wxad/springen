@@ -8,7 +8,7 @@ export const MOTION_CONFIG = {
 } as const;
 
 
-export type SpringenItemValue = string;
+export type SpringenItemValue = string | number;
 
 export interface SpringenItem<T extends SpringenItemValue = SpringenItemValue> {
   value: T;

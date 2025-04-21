@@ -1,8 +1,8 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
-import { SpringenTabsProps, MOTION_CONFIG } from './types';
+import { SpringenTabsProps, MOTION_CONFIG, SpringenItemValue } from './types';
 
-const Tabs: React.FC<SpringenTabsProps> = ({
+const Tabs = <T extends SpringenItemValue>({
   gap = 32,
   items,
   value,
@@ -15,7 +15,7 @@ const Tabs: React.FC<SpringenTabsProps> = ({
   indicatorStyle = {},
   style = {},
   ...props
-}) => {
+}: SpringenTabsProps<T>) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const clipStart = useSpring(0, MOTION_CONFIG);
   const clipEnd = useSpring(0, MOTION_CONFIG);

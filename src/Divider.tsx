@@ -1,8 +1,8 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
-import { SpringenDividerProps, MOTION_CONFIG } from './types';
+import { SpringenDividerProps, MOTION_CONFIG, SpringenItemValue } from './types';
 
-const Divider: React.FC<SpringenDividerProps> = ({
+const Divider = <T extends SpringenItemValue>({
   gap = 25,
   items,
   value,
@@ -16,7 +16,7 @@ const Divider: React.FC<SpringenDividerProps> = ({
   style = {},
   className = '',
   ...props
-}) => {
+}: SpringenDividerProps<T>) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const clipStart = useSpring(0, MOTION_CONFIG);
   const clipEnd = useSpring(0, MOTION_CONFIG);

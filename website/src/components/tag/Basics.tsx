@@ -18,7 +18,7 @@ const Basics = () => {
             { value: 'mutual', label: '互选视频' },
           ]}
           value={value}
-          onChange={(e, value) => setValue(value)}
+          onChange={(_, value) => setValue(value)}
         />
       </CodeBox>
       <CodeBlock initialHeight={270}>{`import Springen from 'springen';
