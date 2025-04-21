@@ -43,3 +43,10 @@ export interface SpringenButtonGroupProps<T extends SpringenItemValue = Springen
   indicatorClassName?: string;
   indicatorStyle?: React.CSSProperties;
 }
+
+export interface SpringenTabsProps<T extends SpringenItemValue = SpringenItemValue> extends SpringenBaseProps<T> {
+  indicatorClassName?: string;
+  indicatorStyle?: React.CSSProperties;
+}
+
+export interface SpringenTagProps<T extends SpringenItemValue = SpringenItemValue> extends SpringenBaseProps<T> { }

@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { SpringenButtonGroupProps, MOTION_CONFIG } from './types';
 
 const ButtonGroup: React.FC<SpringenButtonGroupProps> = ({
-  gap = 14,
+  gap = 0,
   items,
   value,
   onChange,
@@ -13,6 +13,7 @@ const ButtonGroup: React.FC<SpringenButtonGroupProps> = ({
   activeItemStyle = {},
   indicatorClassName = '',
   indicatorStyle = {},
+  style = {},
   ...props
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -54,7 +55,7 @@ const ButtonGroup: React.FC<SpringenButtonGroupProps> = ({
   }, [value]);
 
   return (
-    <motion.div ref={wrapperRef} data-springen-button-group {...props}>
+    <motion.div ref={wrapperRef} data-springen-button-group style={{ gap, ...style }} {...props}>
       {items?.map((item, index) => {
         const itemClass = typeof itemClassName === 'function' ? itemClassName(item, index) : itemClassName;
         const itemCSS = typeof itemStyle === 'function' ? itemStyle(item, index) : itemStyle;
@@ -83,7 +84,7 @@ const ButtonGroup: React.FC<SpringenButtonGroupProps> = ({
         );
       })}
 
-      <motion.div data-springen-button-group-layer style={{ clipPath }}>
+      <motion.div data-springen-button-group-layer style={{ clipPath, gap }}>
         {items?.map((item, index) => {
           const itemClass = typeof itemClassName === 'function' ? itemClassName(item, index) : itemClassName;
           const activeItemClass =

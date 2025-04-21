@@ -1,9 +1,9 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
-import { SpringenDividerProps, MOTION_CONFIG } from './types';
+import { SpringenTabsProps, MOTION_CONFIG } from './types';
 
-const Divider: React.FC<SpringenDividerProps> = ({
-  gap = 25,
+const Tabs: React.FC<SpringenTabsProps> = ({
+  gap = 32,
   items,
   value,
   onChange,
@@ -11,18 +11,18 @@ const Divider: React.FC<SpringenDividerProps> = ({
   itemStyle = {},
   activeItemClassName = '',
   activeItemStyle = {},
-  dividerClassName = '',
-  dividerStyle = {},
+  indicatorClassName = '',
+  indicatorStyle = {},
   style = {},
-  className = '',
   ...props
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const clipStart = useSpring(0, MOTION_CONFIG);
   const clipEnd = useSpring(0, MOTION_CONFIG);
+  const indicatorWidth = useSpring(0, MOTION_CONFIG);
   const indicatorVisible = useMotionValue('hidden');
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const layerClipPath = useTransform([clipStart, clipEnd], ([start, end]) => `inset(0 ${end}px 0 ${start}px)`);
+  const clipPath = useTransform([clipStart, clipEnd], ([start, end]) => `inset(0 ${end}px 0 ${start}px round 6px)`);
 
   const reStyle = () => {
     setTimeout(() => {
@@ -39,9 +39,11 @@ const Divider: React.FC<SpringenDividerProps> = ({
         if (indicatorVisible.get() === 'visible') {
           clipStart.set(newStart);
           clipEnd.set(newEnd);
+          indicatorWidth.set(currentEl.offsetWidth);
         } else {
           clipStart.jump(newStart);
           clipEnd.jump(newEnd);
+          indicatorWidth.jump(currentEl.offsetWidth);
           indicatorVisible.set('visible');
         }
       }
@@ -53,7 +55,7 @@ const Divider: React.FC<SpringenDividerProps> = ({
   }, [value]);
 
   return (
-    <div ref={wrapperRef} data-springen-divider style={style} {...props}>
+    <motion.div ref={wrapperRef} data-springen-tabs style={{ gap, ...style }} {...props}>
       {items?.map((item, index) => {
         const itemClass = typeof itemClassName === 'function' ? itemClassName(item, index) : itemClassName;
         const itemCSS = typeof itemStyle === 'function' ? itemStyle(item, index) : itemStyle;
@@ -61,8 +63,11 @@ const Divider: React.FC<SpringenDividerProps> = ({
         return (
           <React.Fragment key={item.value}>
             <div
-              data-springen-divider-item
-              data-springen-divider-item-disabled={item.disabled}
+              ref={(el) => {
+                itemRefs.current[index] = el;
+              }}
+              data-springen-tabs-item
+              data-springen-tabs-item-disabled={item.disabled}
               className={itemClass}
               style={{
                 ...(itemCSS || {}),
@@ -75,47 +80,27 @@ const Divider: React.FC<SpringenDividerProps> = ({
             >
               {item.label}
             </div>
-            {index < items.length - 1 && (
-              <div
-                className={dividerClassName}
-                data-springen-divider-divider
-                style={{
-                  marginLeft: (gap - 1) / 2,
-                  marginRight: (gap - 1) / 2,
-                  ...dividerStyle,
-                }}
-              />
-            )}
           </React.Fragment>
         );
       })}
-      <motion.div
-        data-springen-divider-layer
-        style={{
-          clipPath: layerClipPath,
-        }}
-      >
+
+      <motion.div data-springen-tabs-layer style={{ clipPath, gap }}>
         {items?.map((item, index) => {
           const itemClass = typeof itemClassName === 'function' ? itemClassName(item, index) : itemClassName;
-          const itemCSS = typeof itemStyle === 'function' ? itemStyle(item, index) : itemStyle;
-          const itemLayerClass =
+          const activeItemClass =
             typeof activeItemClassName === 'function' ? activeItemClassName(item, index) : activeItemClassName;
-          const itemLayerCSS = typeof activeItemStyle === 'function' ? activeItemStyle(item, index) : activeItemStyle;
+          const itemCSS = typeof itemStyle === 'function' ? itemStyle(item, index) : itemStyle;
+          const activeItemCSS = typeof activeItemStyle === 'function' ? activeItemStyle(item, index) : activeItemStyle;
 
           return (
             <div
               key={item.value}
-              ref={(el) => {
-                itemRefs.current[index] = el;
-              }}
-              data-springen-divider-item
-              data-springen-divider-item-layer
-              className={`${itemClass} ${itemLayerClass}`}
+              data-springen-tabs-item
+              data-springen-tabs-item-layer
+              className={`${itemClass} ${activeItemClass}`}
               style={{
                 ...(itemCSS || {}),
-                ...(itemLayerCSS || {}),
-                marginLeft: index === 0 ? 0 : gap / 2,
-                marginRight: index === items.length - 1 ? 0 : gap / 2,
+                ...(activeItemCSS || {}),
               }}
             >
               {item.label}
@@ -123,8 +108,19 @@ const Divider: React.FC<SpringenDividerProps> = ({
           );
         })}
       </motion.div>
-    </div>
+
+      <motion.div
+        data-springen-tabs-indicator
+        style={{
+          x: clipStart,
+          width: indicatorWidth,
+          visibility: indicatorVisible,
+          ...indicatorStyle,
+        }}
+        className={indicatorClassName}
+      />
+    </motion.div>
   );
 };
 
-export default Divider;
+export default Tabs;

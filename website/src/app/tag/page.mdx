@@ -1,0 +1,30 @@
+import Basics from '@/components/tag/Basics';
+import API from '@/components/tag/API';
+import CommonAPI from '@/components/CommonAPI';
+import Customize from '@/components/tag/Customize';
+
+# Tag
+
+Tag is a component that displays a list of tags.
+
+Tabs provides an animation effect based on `clip-path`. So if you want to add an image or icon, it is important to use `svg` rather than `img`.
+
+## Basic Usage
+
+`items` prop for basic usage:
+
+<Basics />
+
+## Customize Each Item
+
+`itemClassName`, `itemStyle`, `activeItemClassName` & `activeItemStyle` prop can be string/React.CSSProperties or function:
+
+<Customize />
+
+## API
+
+<API />
+
+## Common API
+
+<CommonAPI />

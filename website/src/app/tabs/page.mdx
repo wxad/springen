@@ -1,0 +1,30 @@
+import Basics from '@/components/tabs/Basics';
+import API from '@/components/tabs/API';
+import CommonAPI from '@/components/CommonAPI';
+import Customize from '@/components/tabs/Customize';
+
+# Tabs
+
+Tabs is a component that displays a list of tabs.
+
+Tabs provides an animation effect based on `clip-path`. So if you want to add an image or icon, it is important to use `svg` rather than `img`.
+
+## Basic Usage
+
+`items` prop for basic usage:
+
+<Basics />
+
+## Customize Each Item
+
+`itemClassName`, `itemStyle`, `activeItemClassName` & `activeItemStyle` prop can be string/React.CSSProperties or function:
+
+<Customize />
+
+## API
+
+<API />
+
+## Common API
+
+<CommonAPI />
