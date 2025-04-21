@@ -1,8 +1,8 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef } from 'react';
-import { SpringenVerticalProps, MOTION_CONFIG } from './types';
+import { SpringenButtonGroupProps, MOTION_CONFIG } from './types';
 
-const Vertical: React.FC<SpringenVerticalProps> = ({
+const ButtonGroup: React.FC<SpringenButtonGroupProps> = ({
   gap = 14,
   items,
   value,
@@ -11,8 +11,6 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
   itemStyle = {},
   activeItemClassName = '',
   activeItemStyle = {},
-  indicatorWrapperClassName = '',
-  indicatorWrapperStyle = {},
   indicatorClassName = '',
   indicatorStyle = {},
   ...props
@@ -20,10 +18,10 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const clipStart = useSpring(0, MOTION_CONFIG);
   const clipEnd = useSpring(0, MOTION_CONFIG);
-  const indicatorHeight = useSpring(0, MOTION_CONFIG);
+  const indicatorWidth = useSpring(0, MOTION_CONFIG);
   const indicatorVisible = useMotionValue('hidden');
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const clipPath = useTransform([clipStart, clipEnd], ([start, end]) => `inset(${start}px 0 ${end}px)`);
+  const clipPath = useTransform([clipStart, clipEnd], ([start, end]) => `inset(0 ${end}px 0 ${start}px)`);
 
   const reStyle = () => {
     setTimeout(() => {
@@ -34,17 +32,17 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
       const currentEl = itemRefs.current[currentIndex];
 
       if (currentEl) {
-        const newStart = currentEl.offsetTop;
-        const newEnd = wrapperRef.current.offsetHeight - newStart - currentEl.offsetHeight;
+        const newStart = currentEl.offsetLeft;
+        const newEnd = wrapperRef.current.offsetWidth - newStart - currentEl.offsetWidth;
 
         if (indicatorVisible.get() === 'visible') {
           clipStart.set(newStart);
           clipEnd.set(newEnd);
-          indicatorHeight.set(currentEl.offsetHeight);
+          indicatorWidth.set(currentEl.offsetWidth);
         } else {
           clipStart.jump(newStart);
           clipEnd.jump(newEnd);
-          indicatorHeight.jump(currentEl.offsetHeight);
+          indicatorWidth.jump(currentEl.offsetWidth);
           indicatorVisible.set('visible');
         }
       }
@@ -56,7 +54,7 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
   }, [value]);
 
   return (
-    <motion.div ref={wrapperRef} data-springen-vertical {...props}>
+    <motion.div ref={wrapperRef} data-springen-button-group {...props}>
       {items?.map((item, index) => {
         const itemClass = typeof itemClassName === 'function' ? itemClassName(item, index) : itemClassName;
         const itemCSS = typeof itemStyle === 'function' ? itemStyle(item, index) : itemStyle;
@@ -67,11 +65,10 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
               ref={(el) => {
                 itemRefs.current[index] = el;
               }}
-              data-springen-vertical-item
-              data-springen-vertical-item-disabled={item.disabled}
+              data-springen-button-group-item
+              data-springen-button-group-item-disabled={item.disabled}
               className={itemClass}
               style={{
-                marginBottom: index === items.length - 1 ? 0 : gap,
                 ...(itemCSS || {}),
               }}
               onClick={(e) => {
@@ -86,7 +83,7 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
         );
       })}
 
-      <motion.div data-springen-vertical-layer style={{ clipPath }}>
+      <motion.div data-springen-button-group-layer style={{ clipPath }}>
         {items?.map((item, index) => {
           const itemClass = typeof itemClassName === 'function' ? itemClassName(item, index) : itemClassName;
           const activeItemClass =
@@ -97,11 +94,10 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
           return (
             <div
               key={item.value}
-              data-springen-vertical-item
-              data-springen-vertical-item-layer
+              data-springen-button-group-item
+              data-springen-button-group-item-layer
               className={`${itemClass} ${activeItemClass}`}
               style={{
-                marginBottom: index === items.length - 1 ? 0 : gap,
                 ...(itemCSS || {}),
                 ...(activeItemCSS || {}),
               }}
@@ -112,20 +108,18 @@ const Vertical: React.FC<SpringenVerticalProps> = ({
         })}
       </motion.div>
 
-      <div data-springen-vertical-indicator-wrapper className={indicatorWrapperClassName} style={indicatorWrapperStyle}>
-        <motion.div
-          data-springen-vertical-indicator
-          style={{
-            y: clipStart,
-            height: indicatorHeight,
-            visibility: indicatorVisible,
-            ...indicatorStyle,
-          }}
-          className={indicatorClassName}
-        />
-      </div>
+      <motion.div
+        data-springen-button-group-indicator
+        style={{
+          x: clipStart,
+          width: indicatorWidth,
+          visibility: indicatorVisible,
+          ...indicatorStyle,
+        }}
+        className={indicatorClassName}
+      />
     </motion.div>
   );
 };
 
-export default Vertical;
+export default ButtonGroup;

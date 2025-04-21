@@ -5,6 +5,14 @@ const meta: MetaRecord = {
     "type": "menu",
     "title": "Components",
     "items": {
+      "tabs": {
+        "title": "Tabs",
+        "href": "/tabs"
+      },
+      "button-group": {
+        "title": "ButtonGroup",
+        "href": "/button-group"
+      },
       "vertical": {
         "title": "Vertical",
         "href": "/vertical"
@@ -12,6 +20,10 @@ const meta: MetaRecord = {
       "divider": {
         "title": "Divider",
         "href": "/divider"
+      },
+      "tag": {
+        "title": "Tag",
+        "href": "/tag"
       }
     }
   },

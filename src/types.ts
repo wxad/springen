@@ -1,10 +1,10 @@
 import React from 'react';
 
 export const MOTION_CONFIG = {
-  visualDuration: 0.15,
-  bounce: 0,
-  // stiffness: 1754.4,
-  // damping: 83.776,
+  // visualDuration: 0.15,
+  // bounce: 0,
+  stiffness: 1754.4,
+  damping: 83.776,
 } as const;
 
 
@@ -37,4 +37,9 @@ export interface SpringenVerticalProps<T extends SpringenItemValue = SpringenIte
 export interface SpringenDividerProps<T extends SpringenItemValue = SpringenItemValue> extends SpringenBaseProps<T> {
   dividerClassName?: string;
   dividerStyle?: React.CSSProperties;
+}
+
+export interface SpringenButtonGroupProps<T extends SpringenItemValue = SpringenItemValue> extends SpringenBaseProps<T> {
+  indicatorClassName?: string;
+  indicatorStyle?: React.CSSProperties;
 }
