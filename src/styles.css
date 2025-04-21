@@ -1,0 +1,114 @@
+html {
+  --springen-active-color: #296bef;
+}
+
+/* ==========================================================================
+    Vertical
+   ========================================================================== */
+
+[data-springen-vertical] {
+  position: relative;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+[data-springen-vertical-item] {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  height: 30px;
+  font-size: 18px;
+  color: rgba(51, 55, 61, 0.58);
+  cursor: pointer;
+}
+
+[data-springen-vertical-item] svg {
+  fill: rgba(62, 69, 82, 0.36);
+}
+
+[data-springen-vertical-item-layer='true'] {
+  -webkit-text-stroke: 0.5px;
+  color: var(--springen-active-color);
+}
+
+[data-springen-vertical-item-layer='true'] svg {
+  fill: var(--springen-active-color);
+}
+
+[data-springen-vertical-layer] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+[data-springen-vertical-indicator-wrapper] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+[data-springen-vertical-indicator] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--springen-active-color);
+  border-radius: inherit;
+}
+
+/* ==========================================================================
+    Divider
+   ========================================================================== */
+
+[data-springen-divider] {
+  position: relative;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+[data-springen-divider-divider] {
+  width: 1px;
+  height: 12px;
+  background-color: rgba(73, 90, 122, 0.12);
+}
+
+[data-springen-divider-layer] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+[data-springen-divider-item] {
+  font-size: 14px;
+  cursor: pointer;
+  color: rgba(51, 55, 61, 0.58);
+}
+
+[data-springen-divider-item] svg {
+  fill: currentColor;
+}
+
+[data-springen-divider-item-layer] {
+  color: var(--springen-active-color);
+  -webkit-text-stroke: 0.1px;
+}
+
+[data-springen-divider-item-disabled='true'] {
+  cursor: not-allowed;
+}

@@ -1,0 +1,68 @@
+{
+  "name": "springen",
+  "version": "0.0.1",
+  "description": "Springen - Tabs and toggles that ‘jump’ between content sections",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "default": "./dist/index.js"
+    },
+    "./dist/styles.css": "./dist/styles.css"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "bunchee --watch",
+    "build": "bunchee && cp src/styles.css dist/styles.css",
+    "type-check": "tsc --noEmit",
+    "dev:website": "turbo run dev --filter=website...",
+    "build:website": "turbo run build --filter=website...",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "react",
+    "popup",
+    "popover",
+    "tooltip",
+    "popper"
+  ],
+  "author": "Aragakey. <aragakey@qq.com>",
+  "license": "MIT",
+  "homepage": "https://wxad.design/springen",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wxad/springen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wxad/springen/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.13",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.26",
+    "bunchee": "^6.3.3",
+    "prettier": "^2.8.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "turbo": "1.6",
+    "typescript": "^4.8.4"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0 || ^19.0.0-rc",
+    "react-dom": "^18.0.0 || ^19.0.0 || ^19.0.0-rc"
+  },
+  "packageManager": "pnpm@8.12.1",
+  "dependencies": {
+    "framer-motion": "^12.7.4"
+  }
+}
