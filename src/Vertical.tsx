@@ -53,7 +53,7 @@ const Vertical = <T extends SpringenItemValue>({
 
   useEffect(() => {
     reStyle();
-  }, [value]);
+  }, [value, items.length]);
 
   return (
     <motion.div ref={wrapperRef} data-springen-vertical {...props}>

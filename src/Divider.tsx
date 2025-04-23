@@ -50,7 +50,7 @@ const Divider = <T extends SpringenItemValue>({
 
   useEffect(() => {
     reStyle();
-  }, [value]);
+  }, [value, items.length]);
 
   return (
     <div ref={wrapperRef} data-springen-divider style={style} {...props}>

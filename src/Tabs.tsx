@@ -52,7 +52,7 @@ const Tabs = <T extends SpringenItemValue>({
 
   useEffect(() => {
     reStyle();
-  }, [value]);
+  }, [value, items.length]);
 
   return (
     <motion.div ref={wrapperRef} data-springen-tabs style={{ gap, ...style }} {...props}>

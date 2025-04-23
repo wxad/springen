@@ -50,7 +50,7 @@ const Tag = <T extends SpringenItemValue>({
 
   useEffect(() => {
     reStyle();
-  }, [value]);
+  }, [value, items.length]);
 
   return (
     <motion.div ref={wrapperRef} data-springen-tag style={{ gap, ...style }} {...props}>
