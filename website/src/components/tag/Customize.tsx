@@ -35,7 +35,7 @@ const DemoBox = () => {
               label: (item, index, active) => (
                 <>
                   <div
-                    className={`text-sm leading-[22px] ${active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'}`}
+                    className={`text-sm leading-[22px] ${active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'}`}
                   >
                     阅读量
                   </div>
@@ -49,7 +49,7 @@ const DemoBox = () => {
                 <>
                   <div
                     className={`flex items-center gap-px text-sm leading-[22px] ${
-                      active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'
+                      active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'
                     }`}
                   >
                     <svg width="17" height="22" viewBox="0 0 17 22" fill="none">
@@ -71,7 +71,7 @@ const DemoBox = () => {
                 <>
                   <div
                     className={`flex items-center gap-px text-sm leading-[22px] ${
-                      active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'
+                      active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'
                     }`}
                   >
                     <svg width="17" height="22" viewBox="0 0 17 22">
@@ -93,7 +93,7 @@ const DemoBox = () => {
                 <>
                   <div
                     className={`flex items-center gap-px text-sm leading-[22px] ${
-                      active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'
+                      active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'
                     }`}
                   >
                     <svg width="17" height="22" viewBox="0 0 17 22">
@@ -115,7 +115,7 @@ const DemoBox = () => {
                 <>
                   <div
                     className={`flex items-center gap-px text-sm leading-[22px] ${
-                      active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'
+                      active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'
                     }`}
                   >
                     <svg width="17" height="22" viewBox="0 0 17 22">
@@ -156,7 +156,7 @@ const [value, setValue] = useState('阅读量');
       label: (item, index, active) => (
         <>
           <div
-            className={\`text-sm leading-[22px] \${active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'}\`}
+            className={\`text-sm leading-[22px] \${active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'}\`}
           >
             阅读量
           </div>
@@ -170,7 +170,7 @@ const [value, setValue] = useState('阅读量');
         <>
           <div
             className={\`flex items-center gap-px text-sm leading-[22px] \${
-              active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'
+              active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'
             }\`}
           >
             <svg width="17" height="22" viewBox="0 0 17 22" fill="none">
@@ -192,7 +192,7 @@ const [value, setValue] = useState('阅读量');
         <>
           <div
             className={\`flex items-center gap-px text-sm leading-[22px] \${
-              active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'
+              active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'
             }\`}
           >
             <svg width="17" height="22" viewBox="0 0 17 22">
@@ -214,7 +214,7 @@ const [value, setValue] = useState('阅读量');
         <>
           <div
             className={\`flex items-center gap-px text-sm leading-[22px] \${
-              active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'
+              active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'
             }\`}
           >
             <svg width="17" height="22" viewBox="0 0 17 22">
@@ -236,7 +236,7 @@ const [value, setValue] = useState('阅读量');
         <>
           <div
             className={\`flex items-center gap-px text-sm leading-[22px] \${
-              active ? 'opacity- 80 font-semibold' : 'text-[#33373D]/58'
+              active ? 'opacity-80 font-semibold' : 'text-[#33373D]/58'
             }\`}
           >
             <svg width="17" height="22" viewBox="0 0 17 22">
