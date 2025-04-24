@@ -7,6 +7,7 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
   children,
   onMouseEnter,
   onMouseLeave,
+  onMouseDown,
   hoverColor = 'rgba(33, 34, 38, 0.05)',
   activeColor = 'rgba(33, 34, 38, 0.08)',
   ...props
@@ -98,6 +99,29 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
     }, 100);
   };
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.persist();
+
+    if (window.springenHoverFillState.bgVisible && window.springenHoverFillState.bgNode) {
+      window.springenHoverFillState.bgNode.style.background = activeColor;
+    }
+
+    if (onMouseDown) {
+      onMouseDown(e);
+    }
+
+    window.addEventListener('mouseup', handleMouseUp, false);
+  };
+
+  const handleMouseUp = () => {
+    window.removeEventListener('mouseup', handleMouseUp, false);
+    if (window.springenHoverFillState.bgNode) {
+      window.springenHoverFillState.bgNode.style.background = window.springenHoverFillState.bgVisible
+        ? hoverColor
+        : 'transparent';
+    }
+  };
+
   useEffect(() => {
     if (!window.springenHoverFillState) {
       window.springenHoverFillState = {
@@ -110,6 +134,10 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
         timer: 0,
       };
     }
+
+    return () => {
+      window.removeEventListener('mouseup', handleMouseUp, false);
+    };
   }, []);
 
   return (
@@ -118,9 +146,10 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
       data-springen-hover-fill
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onMouseDown={handleMouseDown}
       {...props}
     >
-      {children}
+      <div data-springen-hover-fill-content>{children}</div>
       <i
         ref={bgRef}
         data-springen-hover-fill-bg

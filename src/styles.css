@@ -302,10 +302,10 @@ html {
 
 [data-springen-hover-fill] {
   position: relative;
-  cursor: pointer;
   background-color: transparent;
   border: none;
   outline: none;
+  user-select: none;
 }
 
 [data-springen-hover-fill-bg] {
@@ -316,7 +316,15 @@ html {
   height: 100%;
   background-color: transparent;
   pointer-events: none;
-  border-radius: inherit;
   transform: scale(0.8);
   transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1), background 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+[data-springen-hover-fill-content] {
+  position: relative;
+  z-index: 1;
+}
+
+[data-springen-hover-fill-content] > * {
+  cursor: pointer;
 }

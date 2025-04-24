@@ -9,16 +9,18 @@ const Basics = () => {
   return (
     <div>
       <CodeBox>
-        <Springen.HoverFill className="inline-flex items-center justify-center gap-0.5 h-9 px-3 text-sm rounded-md">
-          light-button
+        <Springen.HoverFill bgClassName="rounded-md">
+          <button className="inline-flex items-center justify-center gap-0.5 h-9 px-3 text-sm">
+            light-button
+          </button>
         </Springen.HoverFill>
       </CodeBox>
       <CodeBlock initialHeight={270}>{`import Springen from 'springen';
 
-<Springen.HoverFill
-  className="inline-flex items-center justify-center gap-0.5 h-9 px-3 text-sm rounded-md"
->
-  light-button
+<Springen.HoverFill bgClassName="rounded-md">
+  <button className="inline-flex items-center justify-center gap-0.5 h-9 px-3 text-sm">
+    light-button
+  </button>
 </Springen.HoverFill>`}</CodeBlock>
     </div>
   );
