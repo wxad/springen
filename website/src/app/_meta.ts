@@ -24,6 +24,10 @@ const meta: MetaRecord = {
       "tag": {
         "title": "Tag",
         "href": "/tag"
+      },
+      "light-button": {
+        "title": "LightButton",
+        "href": "/light-button"
       }
     }
   },

@@ -1,5 +1,11 @@
 import React from 'react';
 
+declare global {
+  interface Window {
+    springenLightButtonState: SpringenLightButtonState;
+  }
+}
+
 export const MOTION_CONFIG = {
   // visualDuration: 0.15,
   // bounce: 0,
@@ -50,3 +56,18 @@ export interface SpringenTabsProps<T extends SpringenItemValue = SpringenItemVal
 }
 
 export interface SpringenTagProps<T extends SpringenItemValue = SpringenItemValue> extends SpringenBaseProps<T> { }
+
+export interface SpringenLightButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+  bgClassName?: string;
+  bgStyle?: React.CSSProperties;
+}
+
+export interface SpringenLightButtonState {
+  timer: number;
+  bgVisible: boolean;
+  buttonNode: HTMLButtonElement;
+  bgNode: HTMLDivElement;
+  bgX: number;
+  bgY: number;
+  bgScale: number;
+}
