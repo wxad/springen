@@ -78,7 +78,7 @@ const Tabs = <T extends SpringenItemValue>({
                 }
               }}
             >
-              {item.label}
+              {typeof item.label === 'function' ? item.label(item, index, false) : item.label}
             </div>
           </React.Fragment>
         );
@@ -103,7 +103,7 @@ const Tabs = <T extends SpringenItemValue>({
                 ...(activeItemCSS || {}),
               }}
             >
-              {item.label}
+              {typeof item.label === 'function' ? item.label(item, index, true) : item.label}
             </div>
           );
         })}

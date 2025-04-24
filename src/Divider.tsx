@@ -73,7 +73,7 @@ const Divider = <T extends SpringenItemValue>({
                 }
               }}
             >
-              {item.label}
+              {typeof item.label === 'function' ? item.label(item, index, false) : item.label}
             </div>
             {index < items.length - 1 && (
               <div
@@ -118,7 +118,7 @@ const Divider = <T extends SpringenItemValue>({
                 marginRight: index === items.length - 1 ? 0 : gap / 2,
               }}
             >
-              {item.label}
+              {typeof item.label === 'function' ? item.label(item, index, true) : item.label}
             </div>
           );
         })}

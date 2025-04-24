@@ -2,7 +2,7 @@ import React from 'react';
 
 declare global {
   interface Window {
-    springenLightButtonState: SpringenLightButtonState;
+    springenHoverFillState: SpringenHoverFillState;
   }
 }
 
@@ -18,7 +18,7 @@ export type SpringenItemValue = string | number;
 
 export interface SpringenItem<T extends SpringenItemValue = SpringenItemValue> {
   value: T;
-  label: React.ReactNode;
+  label: React.ReactNode | ((item: SpringenItem<T>, index: number, active: boolean) => React.ReactNode);
   disabled?: boolean;
 }
 
@@ -57,15 +57,17 @@ export interface SpringenTabsProps<T extends SpringenItemValue = SpringenItemVal
 
 export interface SpringenTagProps<T extends SpringenItemValue = SpringenItemValue> extends SpringenBaseProps<T> { }
 
-export interface SpringenLightButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface SpringenHoverFillProps extends React.HTMLAttributes<HTMLDivElement> {
+  hoverColor?: string;
+  activeColor?: string;
   bgClassName?: string;
   bgStyle?: React.CSSProperties;
 }
 
-export interface SpringenLightButtonState {
+export interface SpringenHoverFillState {
   timer: number;
   bgVisible: boolean;
-  buttonNode: HTMLButtonElement;
+  baseNode: HTMLDivElement;
   bgNode: HTMLDivElement;
   bgX: number;
   bgY: number;

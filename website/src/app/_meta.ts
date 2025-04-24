@@ -25,9 +25,9 @@ const meta: MetaRecord = {
         "title": "Tag",
         "href": "/tag"
       },
-      "light-button": {
-        "title": "LightButton",
-        "href": "/light-button"
+      "hover-fill": {
+        "title": "HoverFill",
+        "href": "/hover-fill"
       }
     }
   },

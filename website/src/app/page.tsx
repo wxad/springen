@@ -67,16 +67,20 @@ const components = [
     href: '/tag',
   },
   {
-    name: 'LightButton',
+    name: 'HoverFill',
     image: (
-      <svg width="22" height="22" viewBox="0 0 24 24" className="opacity-40">
+      <svg width="22" height="22" viewBox="0 0 20 20" className="opacity-40">
         <path
+          strokeWidth="0.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke="currentColor"
           fill="currentColor"
-          d="M12 2a9 9 0 0 0-9 9v11l3-3l3 3l3-3l3 3l3-3l3 3V11a9 9 0 0 0-9-9m7 15.17l-1-1l-1.41 1.42L15 19.17l-1.59-1.58L12 16.17l-1.41 1.42L9 19.17l-1.59-1.58L6 16.17l-1 1V11c0-3.86 3.14-7 7-7s7 3.14 7 7zM11 10c0 1.11-.89 2-2 2s-2-.89-2-2s.9-2 2-2s2 .9 2 2m6 0c0 1.11-.89 2-2 2s-2-.89-2-2s.9-2 2-2s2 .9 2 2"
+          d="M2 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7a2 2 0 0 1-1.164 1.818a1.5 1.5 0 0 0-.275-.379l-.446-.446A1 1 0 0 0 17 13V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5v1H4a2 2 0 0 1-2-2zm8.854 4.147A.5.5 0 0 0 10 10.5v7a.5.5 0 0 0 .91.287l1.571-2.245l2.943.452a.5.5 0 0 0 .43-.848zM11 15.914v-4.207l3.066 3.067l-1.74-.268a.5.5 0 0 0-.486.207z"
         />
       </svg>
     ),
-    href: '/light-button',
+    href: '/hover-fill',
   },
 ];
 

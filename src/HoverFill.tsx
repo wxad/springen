@@ -1,0 +1,136 @@
+import React, { useEffect, useRef } from 'react';
+import { SpringenHoverFillProps } from './types';
+
+const HoverFill: React.FC<SpringenHoverFillProps> = ({
+  bgClassName = '',
+  bgStyle = {},
+  children,
+  onMouseEnter,
+  onMouseLeave,
+  hoverColor = 'rgba(33, 34, 38, 0.05)',
+  activeColor = 'rgba(33, 34, 38, 0.08)',
+  ...props
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.persist();
+    clearTimeout(window.springenHoverFillState.timer);
+    const { x, y } = ref.current.getBoundingClientRect();
+
+    if (
+      window.springenHoverFillState.bgVisible &&
+      window.springenHoverFillState.bgNode &&
+      window.springenHoverFillState.baseNode !== ref.current &&
+      window.springenHoverFillState.baseNode.parentNode === ref.current.parentNode
+    ) {
+      const { bgX, bgY, bgScale, baseNode } = window.springenHoverFillState;
+      const { x: originX, y: originY } = baseNode.getBoundingClientRect();
+      window.springenHoverFillState.bgNode.style.transformOrigin = '0 0';
+      window.springenHoverFillState.bgNode.style.width = ref.current.offsetWidth + 'px';
+      window.springenHoverFillState.bgNode.style.transform = `translate3d(${x - originX}px, ${
+        y - originY
+      }px, 0) scale(${bgScale})`;
+    } else {
+      if (window.springenHoverFillState.bgVisible && window.springenHoverFillState.bgNode) {
+        window.springenHoverFillState.bgNode.style.background = 'transparent';
+        window.springenHoverFillState.bgNode.style.transform = 'scale(0.8)';
+        window.springenHoverFillState.bgNode.style.transition = '';
+      }
+
+      const { clientX, clientY } = e;
+      if (bgRef.current) {
+        bgRef.current.style.width = ref.current.offsetWidth + 'px';
+        bgRef.current.style.transformOrigin = `${clientX - x}px ${clientY - y}px`;
+        bgRef.current.style.background = hoverColor;
+        bgRef.current.style.transform = 'scale(1)';
+        bgRef.current.style.transition = '';
+      }
+      window.springenHoverFillState = {
+        bgVisible: true,
+        bgX: clientX - x,
+        bgY: clientY - y,
+        bgScale: 1,
+        baseNode: ref.current,
+        bgNode: bgRef.current,
+        timer: 0,
+      };
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.persist();
+    clearTimeout(window.springenHoverFillState.timer);
+    window.springenHoverFillState.timer = window.setTimeout(() => {
+      if (window.springenHoverFillState.bgNode) {
+        window.springenHoverFillState.bgNode.style.transformOrigin = '';
+        window.springenHoverFillState.bgNode.style.background = 'transparent';
+        window.springenHoverFillState.bgNode.style.width = '';
+        window.springenHoverFillState.bgNode.style.transform = '';
+        window.springenHoverFillState.bgNode.style.transition = '0s';
+      }
+
+      if (bgRef.current) {
+        bgRef.current.style.background = hoverColor;
+        bgRef.current.style.transform = 'scale(1)';
+        bgRef.current.style.transition = '0s';
+      }
+
+      setTimeout(() => {
+        const { clientX, clientY } = e;
+        const { x, y } = ref.current.getBoundingClientRect();
+        if (bgRef.current) {
+          bgRef.current.style.transformOrigin = `${clientX - x}px ${clientY - y}px`;
+          bgRef.current.style.background = 'transparent';
+          bgRef.current.style.transform = 'scale(0.8)';
+          bgRef.current.style.transition = '';
+        }
+        window.springenHoverFillState = {
+          timer: 0,
+          bgVisible: false,
+          bgX: 0,
+          bgY: 0,
+          bgScale: 0,
+          baseNode: null,
+          bgNode: null,
+        };
+      }, 0);
+    }, 100);
+  };
+
+  useEffect(() => {
+    if (!window.springenHoverFillState) {
+      window.springenHoverFillState = {
+        bgVisible: false,
+        bgX: 0,
+        bgY: 0,
+        bgScale: 0,
+        baseNode: null,
+        bgNode: null,
+        timer: 0,
+      };
+    }
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      data-springen-hover-fill
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      {...props}
+    >
+      {children}
+      <i
+        ref={bgRef}
+        data-springen-hover-fill-bg
+        className={bgClassName}
+        style={{
+          ...(bgStyle || {}),
+        }}
+      />
+    </div>
+  );
+};
+
+export default HoverFill;
