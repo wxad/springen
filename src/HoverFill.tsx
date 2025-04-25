@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { SpringenHoverFillProps } from './types';
 
+const DEFAULT_HOVER_COLOR = 'rgba(33, 34, 38, 0.05)';
+const DEFAULT_ACTIVE_COLOR = 'rgba(33, 34, 38, 0.08)';
+
 const HoverFill: React.FC<SpringenHoverFillProps> = ({
   bgClassName = '',
   bgStyle = {},
@@ -8,8 +11,8 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
   onMouseEnter,
   onMouseLeave,
   onMouseDown,
-  hoverColor = 'rgba(33, 34, 38, 0.05)',
-  activeColor = 'rgba(33, 34, 38, 0.08)',
+  hoverColor = DEFAULT_HOVER_COLOR,
+  activeColor = DEFAULT_ACTIVE_COLOR,
   ...props
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -17,6 +20,11 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     e.persist();
     clearTimeout(window.springenHoverFillState.timer);
+
+    if (!ref.current) {
+      return;
+    }
+
     const { x, y } = ref.current.getBoundingClientRect();
 
     if (
@@ -62,6 +70,11 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     e.persist();
     clearTimeout(window.springenHoverFillState.timer);
+
+    if (!ref.current) {
+      return;
+    }
+
     window.springenHoverFillState.timer = window.setTimeout(() => {
       if (window.springenHoverFillState.bgNode) {
         window.springenHoverFillState.bgNode.style.transformOrigin = '';
@@ -103,7 +116,8 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
     e.persist();
 
     if (window.springenHoverFillState.bgVisible && window.springenHoverFillState.bgNode) {
-      window.springenHoverFillState.bgNode.style.background = activeColor;
+      window.springenHoverFillState.bgNode.style.background =
+        hoverColor === DEFAULT_HOVER_COLOR ? activeColor : hoverColor;
     }
 
     if (onMouseDown) {
