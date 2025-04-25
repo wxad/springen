@@ -21,22 +21,24 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
     e.persist();
     clearTimeout(window.springenHoverFillState.timer);
 
-    if (!ref.current) {
+    const root = ref.current || e.currentTarget;
+
+    if (!root) {
       return;
     }
 
-    const { x, y } = ref.current.getBoundingClientRect();
+    const { x, y } = root.getBoundingClientRect();
 
     if (
       window.springenHoverFillState.bgVisible &&
       window.springenHoverFillState.bgNode &&
-      window.springenHoverFillState.baseNode !== ref.current &&
-      window.springenHoverFillState.baseNode.parentNode === ref.current.parentNode
+      window.springenHoverFillState.baseNode !== root &&
+      window.springenHoverFillState.baseNode.parentNode === root.parentNode
     ) {
       const { bgX, bgY, bgScale, baseNode } = window.springenHoverFillState;
       const { x: originX, y: originY } = baseNode.getBoundingClientRect();
       window.springenHoverFillState.bgNode.style.transformOrigin = '0 0';
-      window.springenHoverFillState.bgNode.style.width = ref.current.offsetWidth + 'px';
+      window.springenHoverFillState.bgNode.style.width = root.offsetWidth + 'px';
       window.springenHoverFillState.bgNode.style.transform = `translate3d(${x - originX}px, ${
         y - originY
       }px, 0) scale(${bgScale})`;
@@ -49,7 +51,7 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
 
       const { clientX, clientY } = e;
       if (bgRef.current) {
-        bgRef.current.style.width = ref.current.offsetWidth + 'px';
+        bgRef.current.style.width = root.offsetWidth + 'px';
         bgRef.current.style.transformOrigin = `${clientX - x}px ${clientY - y}px`;
         bgRef.current.style.background = hoverColor;
         bgRef.current.style.transform = 'scale(1)';
@@ -60,7 +62,7 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
         bgX: clientX - x,
         bgY: clientY - y,
         bgScale: 1,
-        baseNode: ref.current,
+        baseNode: root,
         bgNode: bgRef.current,
         timer: 0,
       };
@@ -71,7 +73,9 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
     e.persist();
     clearTimeout(window.springenHoverFillState.timer);
 
-    if (!ref.current) {
+    const root = ref.current || e.currentTarget;
+
+    if (!root) {
       return;
     }
 
@@ -92,7 +96,7 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
 
       setTimeout(() => {
         const { clientX, clientY } = e;
-        const { x, y } = ref.current.getBoundingClientRect();
+        const { x, y } = root.getBoundingClientRect();
         if (bgRef.current) {
           bgRef.current.style.transformOrigin = `${clientX - x}px ${clientY - y}px`;
           bgRef.current.style.background = 'transparent';
