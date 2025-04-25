@@ -59,7 +59,7 @@ const NextraTheme: React.FC<{
       <div className="lg:grid grid-cols-[240px_1fr] gap-4">
         <Navbar pageMap={pageMap} />
         <div className="flex pb-16 lg:py-16 px-4 lg:pl-0 gap-4 xl:pr-[290px]">
-          <div className="max-w-[672px] w-full mx-auto relative">{children}</div>
+          <div className="max-w-[720px] w-full mx-auto relative">{children}</div>
         </div>
       </div>
     </div>
