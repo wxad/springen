@@ -14,7 +14,6 @@ const Pagination: React.FC<SpringenPaginationProps> = ({
   onPageSizeChange,
   onMouseEnter,
   onMouseLeave,
-  showFirstLast = false,
   showPrevNext = true,
   ...props
 }) => {
@@ -99,7 +98,7 @@ const Pagination: React.FC<SpringenPaginationProps> = ({
         }
       }
     }, 0);
-  }, [value, pageNumber, showFirstLast, showPrevNext]);
+  }, [value, pageNumber, showPrevNext]);
 
   const boundaryCount = 1;
   const siblingCount = 1;
@@ -130,7 +129,6 @@ const Pagination: React.FC<SpringenPaginationProps> = ({
   );
 
   const itemList = [
-    ...(showFirstLast && pageNumber > 1 ? ['first'] : []),
     ...(showPrevNext && pageNumber > 1 ? ['previous'] : []),
     ...startPages,
 
@@ -153,7 +151,6 @@ const Pagination: React.FC<SpringenPaginationProps> = ({
 
     ...endPages,
     ...(showPrevNext && pageNumber > 1 ? ['next'] : []),
-    ...(showFirstLast && pageNumber > 1 ? ['last'] : []),
   ];
 
   return (
@@ -163,36 +160,6 @@ const Pagination: React.FC<SpringenPaginationProps> = ({
       </i>
       <i data-springen-pagination-active-indicator ref={activeIndicatorRef} />
       {itemList.map((item) => {
-        if (item === 'first') {
-          return (
-            <div
-              key={item}
-              data-springen-pagination-item
-              data-springen-pagination-item-first
-              data-springen-pagination-item-disabled={isPrevDisabled}
-              onMouseEnter={(e) => {
-                if (!isPrevDisabled) {
-                  handleItemMouseEnter(e);
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isPrevDisabled) {
-                  handleItemMouseLeave(e);
-                }
-              }}
-              onClick={(e) => {
-                if (!isPrevDisabled) {
-                  onChange?.(e, 1, pageSize);
-                }
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M7.77293 11.7123C7.87056 11.6147 7.87056 11.4564 7.77293 11.3587L4.41418 7.99999L7.77293 4.64123C7.87056 4.5436 7.87056 4.38531 7.77293 4.28768L7.41938 3.93412C7.32175 3.83649 7.16346 3.83649 7.06583 3.93412L3.17674 7.82321C3.07911 7.92084 3.07911 8.07913 3.17674 8.17676L7.06583 12.0659C7.16346 12.1635 7.32175 12.1635 7.41938 12.0659L7.77293 11.7123Z" />
-                <path d="M12.2729 11.7123C12.3706 11.6147 12.3706 11.4564 12.2729 11.3587L8.91418 7.99999L12.2729 4.64123C12.3706 4.5436 12.3706 4.38531 12.2729 4.28768L11.9194 3.93412C11.8217 3.83649 11.6635 3.83649 11.5658 3.93412L7.67674 7.82321C7.57911 7.92084 7.57911 8.07913 7.67674 8.17676L11.5658 12.0659C11.6635 12.1635 11.8217 12.1635 11.9194 12.0659L12.2729 11.7123Z" />
-              </svg>
-            </div>
-          );
-        }
         if (item === 'previous') {
           return (
             <div
@@ -261,36 +228,6 @@ const Pagination: React.FC<SpringenPaginationProps> = ({
             </div>
           );
         }
-        if (item === 'last') {
-          return (
-            <div
-              key={item}
-              data-springen-pagination-item
-              data-springen-pagination-item-last
-              data-springen-pagination-item-disabled={isNextDisabled}
-              onMouseEnter={(e) => {
-                if (!isNextDisabled) {
-                  handleItemMouseEnter(e);
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isNextDisabled) {
-                  handleItemMouseLeave(e);
-                }
-              }}
-              onClick={(e) => {
-                if (!isNextDisabled) {
-                  onChange?.(e, pageNumber, pageSize);
-                }
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M8.21238 4.28769C8.11475 4.38532 8.11475 4.54362 8.21238 4.64125L11.5711 8L8.21238 11.3588C8.11475 11.4564 8.11475 11.6147 8.21238 11.7123L8.56594 12.0659C8.66357 12.1635 8.82186 12.1635 8.91949 12.0659L12.8086 8.17678C12.9062 8.07915 12.9062 7.92086 12.8086 7.82323L8.91949 3.93414C8.82186 3.83651 8.66357 3.83651 8.56594 3.93414L8.21238 4.28769Z" />
-                <path d="M3.71238 4.28769C3.61475 4.38532 3.61475 4.54362 3.71238 4.64125L7.07114 8L3.71238 11.3588C3.61475 11.4564 3.61475 11.6147 3.71238 11.7123L4.06594 12.0659C4.16357 12.1635 4.32186 12.1635 4.41949 12.0659L8.30858 8.17678C8.40621 8.07915 8.40621 7.92086 8.30858 7.82323L4.41949 3.93414C4.32186 3.83651 4.16357 3.83651 4.06594 3.93414L3.71238 4.28769Z" />
-              </svg>
-            </div>
-          );
-        }
         if (item === 'start-ellipsis' || item === 'end-ellipsis') {
           return (
             <div
@@ -303,7 +240,13 @@ const Pagination: React.FC<SpringenPaginationProps> = ({
                 onChange?.(e, Math.max(1, item === 'start-ellipsis' ? value - 5 : value + 5), pageSize);
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                data-springen-pagination-item-ellipsis-icon
+              >
                 <path d="M4.00312 8.0002C4.00312 8.55248 3.55541 9.0002 3.00313 9.0002C2.45084 9.0002 2.00313 8.55248 2.00313 8.0002C2.00313 7.44791 2.45084 7.0002 3.00313 7.0002C3.55541 7.0002 4.00312 7.44791 4.00312 8.0002Z" />
                 <path
                   fillRule="evenodd"
@@ -323,6 +266,17 @@ const Pagination: React.FC<SpringenPaginationProps> = ({
                   d="M14.3031 8.0002C14.3031 8.71817 13.7211 9.3002 13.0031 9.3002C12.2851 9.3002 11.7031 8.71817 11.7031 8.0002C11.7031 7.28223 12.2851 6.7002 13.0031 6.7002C13.7211 6.7002 14.3031 7.28223 14.3031 8.0002ZM13.0031 9.0002C13.5554 9.0002 14.0031 8.55248 14.0031 8.0002C14.0031 7.44791 13.5554 7.0002 13.0031 7.0002C12.4508 7.0002 12.0031 7.44791 12.0031 8.0002C12.0031 8.55248 12.4508 9.0002 13.0031 9.0002Z"
                 />
               </svg>
+              {item === 'start-ellipsis' ? (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" data-springen-pagination-item-ellipsis-icon-hover>
+                  <path d="M7.77293 11.7123C7.87056 11.6147 7.87056 11.4564 7.77293 11.3587L4.41418 7.99999L7.77293 4.64123C7.87056 4.5436 7.87056 4.38531 7.77293 4.28768L7.41938 3.93412C7.32175 3.83649 7.16346 3.83649 7.06583 3.93412L3.17674 7.82321C3.07911 7.92084 3.07911 8.07913 3.17674 8.17676L7.06583 12.0659C7.16346 12.1635 7.32175 12.1635 7.41938 12.0659L7.77293 11.7123Z" />
+                  <path d="M12.2729 11.7123C12.3706 11.6147 12.3706 11.4564 12.2729 11.3587L8.91418 7.99999L12.2729 4.64123C12.3706 4.5436 12.3706 4.38531 12.2729 4.28768L11.9194 3.93412C11.8217 3.83649 11.6635 3.83649 11.5658 3.93412L7.67674 7.82321C7.57911 7.92084 7.57911 8.07913 7.67674 8.17676L11.5658 12.0659C11.6635 12.1635 11.8217 12.1635 11.9194 12.0659L12.2729 11.7123Z" />
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" data-springen-pagination-item-ellipsis-icon-hover>
+                  <path d="M8.21238 4.28769C8.11475 4.38532 8.11475 4.54362 8.21238 4.64125L11.5711 8L8.21238 11.3588C8.11475 11.4564 8.11475 11.6147 8.21238 11.7123L8.56594 12.0659C8.66357 12.1635 8.82186 12.1635 8.91949 12.0659L12.8086 8.17678C12.9062 8.07915 12.9062 7.92086 12.8086 7.82323L8.91949 3.93414C8.82186 3.83651 8.66357 3.83651 8.56594 3.93414L8.21238 4.28769Z" />
+                  <path d="M3.71238 4.28769C3.61475 4.38532 3.61475 4.54362 3.71238 4.64125L7.07114 8L3.71238 11.3588C3.61475 11.4564 3.61475 11.6147 3.71238 11.7123L4.06594 12.0659C4.16357 12.1635 4.32186 12.1635 4.41949 12.0659L8.30858 8.17678C8.40621 8.07915 8.40621 7.92086 8.30858 7.82323L4.41949 3.93414C4.32186 3.83651 4.16357 3.83651 4.06594 3.93414L3.71238 4.28769Z" />
+                </svg>
+              )}
             </div>
           );
         }

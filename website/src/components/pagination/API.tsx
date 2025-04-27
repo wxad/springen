@@ -24,12 +24,6 @@ const props = [
     default: '10',
   },  
   {
-    name: 'showFirstLast',
-    enDescription: 'Whether to show the first and last page buttons',
-    type: 'boolean',
-    default: 'false',
-  },
-  {
     name: 'showPrevNext', 
     enDescription: 'Whether to show the previous and next page buttons',
     type: 'boolean',

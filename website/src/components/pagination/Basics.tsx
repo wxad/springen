@@ -12,7 +12,6 @@ const Basics = () => {
     totalSize: 100,
     pageSize: 10,
     prevNext: true,
-    firstLast: false,
   });
 
   const tweakpaneContainerRef = useRef<HTMLDivElement>(null);
@@ -40,10 +39,6 @@ const Basics = () => {
       type: 'boolean',
     });
 
-    pane.addBinding(params, 'firstLast', {
-      type: 'boolean',
-    });
-
     pane.on('change', (ev) => {
       setParams((prev) => ({
         ...prev,
@@ -63,7 +58,6 @@ const Basics = () => {
         <div ref={tweakpaneContainerRef} className="absolute top-2 right-2 w-[250px] grayscale opacity-90" />
         <Springen.Pagination
           showPrevNext={params.prevNext}
-          showFirstLast={params.firstLast}
           totalSize={params.totalSize}
           pageSize={params.pageSize}
           value={value}
@@ -77,7 +71,6 @@ const [value, setValue] = useState(1);
 
 <Springen.Pagination
   ${params.prevNext ? 'showPrevNext' : 'showPrevNext={false}'}
-  ${params.firstLast ? 'showFirstLast' : 'showFirstLast={false}'}
   totalSize={${params.totalSize}}
   pageSize={${params.pageSize}}
   value={value}

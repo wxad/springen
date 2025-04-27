@@ -399,3 +399,24 @@ html {
   cursor: not-allowed;
   color: rgba(69, 80, 102, 0.25);
 }
+
+[data-springen-pagination-item-ellipsis-icon] {
+  transition: opacity 0.1s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+[data-springen-pagination-item-ellipsis-icon-hover] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  opacity: 0;
+  transition: opacity 0.1s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+[data-springen-pagination-item-ellipsis]:hover [data-springen-pagination-item-ellipsis-icon] {
+  opacity: 0;
+}
+
+[data-springen-pagination-item-ellipsis]:hover [data-springen-pagination-item-ellipsis-icon-hover] {
+  opacity: 1;
+}
