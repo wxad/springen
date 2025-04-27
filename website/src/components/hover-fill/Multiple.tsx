@@ -57,6 +57,14 @@ const Basics = () => {
           </div>
         </Springen.HoverFill>
       </CodeBox>
+      <CodeBlock initialHeight={270}>{`import Springen from 'springen';
+
+<div>
+  <Springen.HoverFill className="flex-1">light-button</Springen.HoverFill>
+</div>
+<Springen.HoverFill className="flex-1">light-button</Springen.HoverFill>
+<Springen.HoverFill className="flex-1">light-button</Springen.HoverFill>`}</CodeBlock>
+      <hr className="my-4 border-t border-dashed border-neutral-200" />
       <CodeBox className="mt-2 p-0">
         <div className="bg-white w-full">
           <svg className="block w-full" viewBox="0 0 793 68" fill="none">
@@ -109,6 +117,14 @@ const Basics = () => {
           </div>
         </div>
       </CodeBox>
+      <CodeBlock initialHeight={270}>{`import Springen from 'springen';
+
+{Array.from({ length: 6 }).map((_, index) => (
+  <Springen.HoverFill key={index} className="flex-1" bgClassName="rounded-lg">
+    <div className="flex p-4 gap-3" />
+  </Springen.HoverFill>
+))}`}</CodeBlock>
+      <hr className="my-4 border-t border-dashed border-neutral-200" />
       <CodeBox className="mt-2 p-0">
         <div className="bg-white w-full">
           <div className="flex items-center justify-between pl-6 pr-4 h-[68px] border-b border-neutral-100">
@@ -575,13 +591,95 @@ const Basics = () => {
           </div>
         </div>
       </CodeBox>
-      <CodeBlock initialHeight={270}>{`import Springen from 'springen';
-
-<div>
-  <Springen.HoverFill className="flex-1">light-button</Springen.HoverFill>
-</div>
-<Springen.HoverFill className="flex-1">light-button</Springen.HoverFill>
-<Springen.HoverFill className="flex-1">light-button</Springen.HoverFill>`}</CodeBlock>
+      <hr className="my-4 border-t border-dashed border-neutral-200" />
+      <CodeBox className="mt-2 p-0">
+        <div className="bg-white flex items-center justify-center p-5 w-full">
+          <div>
+            <div className="flex h-11 text-xs text-neutral-500">
+              <div className="flex items-center w-[78px] pl-2">指数名称</div>
+              <div className="flex justify-center items-center w-[70px]">指数值</div>
+              <div className="flex justify-center items-center w-[70px]">30天环比</div>
+              <div className="flex justify-center items-center w-[70px]">行业均值</div>
+              <div className="flex justify-end items-center pr-2 w-[77px]">行业排名</div>
+            </div>
+            <Springen.HoverFill bgClassName="rounded-sm">
+              <div className="flex h-11 text-sm group">
+                <div className="flex items-center w-[78px] pl-2 group-hover:text-[#296BEF] group-hover:font-semibold transition-colors duration-150">
+                  社交指数
+                </div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#296BEF] group-hover:font-medium transition-colors duration-150">
+                  92.5
+                </div>
+                <div className="flex justify-center items-center w-[70px]">+0.5%</div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#10AEFF] group-hover:font-semibold transition-colors duration-150">
+                  80
+                </div>
+                <div className="flex justify-end items-center pr-2 w-[77px]">前0.5%</div>
+              </div>
+            </Springen.HoverFill>
+            <Springen.HoverFill bgClassName="rounded-sm">
+              <div className="flex h-11 text-sm group">
+                <div className="flex items-center w-[78px] pl-2 group-hover:text-[#296BEF] group-hover:font-semibold transition-colors duration-150">
+                  互动指数
+                </div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#296BEF] group-hover:font-medium transition-colors duration-150">
+                  84.2
+                </div>
+                <div className="flex justify-center items-center w-[70px]">-1.1%</div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#10AEFF] group-hover:font-semibold transition-colors duration-150">
+                  80
+                </div>
+                <div className="flex justify-end items-center pr-2 w-[77px]">前50%</div>
+              </div>
+            </Springen.HoverFill>
+            <Springen.HoverFill bgClassName="rounded-sm">
+              <div className="flex h-11 text-sm group">
+                <div className="flex items-center w-[78px] pl-2 group-hover:text-[#296BEF] group-hover:font-semibold transition-colors duration-150">
+                  合作指数
+                </div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#296BEF] group-hover:font-medium transition-colors duration-150">
+                  80.2
+                </div>
+                <div className="flex justify-center items-center w-[70px]">+3.4%</div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#10AEFF] group-hover:font-semibold transition-colors duration-150">
+                  70
+                </div>
+                <div className="flex justify-end items-center pr-2 w-[77px]">前10%</div>
+              </div>
+            </Springen.HoverFill>
+            <Springen.HoverFill bgClassName="rounded-sm">
+              <div className="flex h-11 text-sm group">
+                <div className="flex items-center w-[78px] pl-2 group-hover:text-[#296BEF] group-hover:font-semibold transition-colors duration-150">
+                  性价比指数
+                </div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#296BEF] group-hover:font-medium transition-colors duration-150">
+                  92.5
+                </div>
+                <div className="flex justify-center items-center w-[70px]">+0.5%</div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#10AEFF] group-hover:font-semibold transition-colors duration-150">
+                  80
+                </div>
+                <div className="flex justify-end items-center pr-2 w-[77px]">低于50%</div>
+              </div>
+            </Springen.HoverFill>
+            <Springen.HoverFill bgClassName="rounded-sm">
+              <div className="flex h-11 text-sm group">
+                <div className="flex items-center w-[78px] pl-2 group-hover:text-[#296BEF] group-hover:font-semibold transition-colors duration-150">
+                  成长指数
+                </div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#296BEF] group-hover:font-medium transition-colors duration-150">
+                  92.5
+                </div>
+                <div className="flex justify-center items-center w-[70px]">+0.5%</div>
+                <div className="flex justify-center items-center w-[70px] group-hover:text-[#10AEFF] group-hover:font-semibold transition-colors duration-150">
+                  80
+                </div>
+                <div className="flex justify-end items-center pr-2 w-[77px]">低于50%</div>
+              </div>
+            </Springen.HoverFill>
+          </div>
+        </div>
+      </CodeBox>
     </div>
   );
 };

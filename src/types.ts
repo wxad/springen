@@ -73,3 +73,13 @@ export interface SpringenHoverFillState {
   bgY: number;
   bgScale: number;
 }
+
+export interface SpringenPaginationProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  value?: number;
+  totalSize: number;
+  pageSize?: number;
+  onChange?: (e: React.MouseEvent<HTMLDivElement>, value: number, pageSize: number) => void;
+  onPageSizeChange?: (newPageSize: number, pageSize: number) => void;
+  showFirstLast?: boolean;
+  showPrevNext?: boolean;
+}

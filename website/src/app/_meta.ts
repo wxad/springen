@@ -25,6 +25,10 @@ const meta: MetaRecord = {
         "title": "Tag",
         "href": "/tag"
       },
+      "pagination": {
+        "title": "Pagination",
+        "href": "/pagination"
+      },
       "hover-fill": {
         "title": "HoverFill",
         "href": "/hover-fill"
