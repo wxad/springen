@@ -1,6 +1,6 @@
 import LightButton from '@/components/hover-fill/LightButton';
 import LightCard from '@/components/hover-fill/LightCard';
-import Multiple from '@/components/hover-fill/Multiple';
+import Siblings from '@/components/hover-fill/Siblings';
 import API from '@/components/hover-fill/API';
 
 # HoverFill
@@ -9,25 +9,25 @@ HoverFill is a component that displays a light background when hovering on it.
 
 HoverFill will show background based on the hover origin.
 
-## As a light button
+## As a Light Button
 
 HoverFill can be used as a light button:
 
 <LightButton />
 
-## As a light card
+## As a Light Card
 
 HoverFill can be used as a light card:
 
 <LightCard />
 
-## Multiple HoverFills
+## Siblings Share Background
 
-When HoverFills are near each other and share the same parent, they will **automatically** share one background when you hover from one to another.
+When HoverFills share the same parent as siblings, they will **automatically** share one background when you hover from one to another.
 
 Make sure not to set `overflow: hidden` on the parent element, otherwise don't use this component.
 
-<Multiple />
+<Siblings />
 
 ## API
 
