@@ -97,8 +97,24 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
       setTimeout(() => {
         const { clientX, clientY } = e;
         const { x, y } = root.getBoundingClientRect();
+
+        let originX = clientX - x;
+        let originY = clientY - y;
+
+        if (originX < 0) {
+          originX = 0;
+        } else if (originX > root.offsetWidth) {
+          originX = root.offsetWidth;
+        }
+
+        if (originY < 0) {
+          originY = 0;
+        } else if (originY > root.offsetHeight) {
+          originY = root.offsetHeight;
+        }
+
         if (bgRef.current) {
-          bgRef.current.style.transformOrigin = `${clientX - x}px ${clientY - y}px`;
+          bgRef.current.style.transformOrigin = `${originX}px ${originY}px`;
           bgRef.current.style.background = 'transparent';
           bgRef.current.style.transform = 'scale(0.8)';
           bgRef.current.style.transition = '';

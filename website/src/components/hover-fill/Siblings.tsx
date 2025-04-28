@@ -672,8 +672,8 @@ const Basics = () => {
       <h3 className="text-[17px] mt-6 font-semibold mb-3 inline-block group relative w-fit">As List Items:</h3>
       <CodeBox className="mt-2 p-0">
         <div className="w-[366px] max-w-[95%] bg-white">
-          <div className="flex items-center justify-between h-[62px]">
-            <div className="flex items-center px-5">
+          <div className="flex items-center justify-between px-5 h-[62px]">
+            <div className="flex items-center">
               <Springen.HoverFill bgClassName="rounded-sm">
                 <div className="flex items-center justify-center size-[30px]">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
