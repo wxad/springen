@@ -1,6 +1,6 @@
 {
   "name": "springen",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Springen - Tabs and toggles that ‘jump’ between content sections",
   "exports": {
     ".": {
