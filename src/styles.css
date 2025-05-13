@@ -329,6 +329,10 @@ html {
   cursor: pointer;
 }
 
+*:focus-within [data-springen-hover-fill-bg] {
+  opacity: 0 !important;
+}
+
 /* ==========================================================================
     Pagination
    ========================================================================== */
@@ -419,4 +423,223 @@ html {
 
 [data-springen-pagination-item-ellipsis]:hover [data-springen-pagination-item-ellipsis-icon-hover] {
   opacity: 1;
+}
+
+/* ==========================================================================
+    Slider
+    Slider uses RcSlider, so we need to use class name to override styles.
+   ========================================================================== */
+
+[data-springen-slider-wrapper] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+.springen-slider {
+  flex: 1;
+  list-style: none;
+  position: relative;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 4px 0;
+  height: 12px;
+  cursor: pointer;
+}
+
+.springen-slider-hasMarks {
+  padding-bottom: 12px;
+}
+.springen-slider-rail {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: #e6e6e6;
+  border-radius: 2px;
+  transition: background-color 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.springen-slider-track {
+  position: absolute;
+  height: 4px;
+  background-color: var(--springen-active-color);
+  border-radius: 4px;
+  transition: background-color 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+[data-springen-slider-handle-wrapper] {
+  position: relative;
+}
+
+.springen-slider-handle {
+  position: absolute;
+  margin-top: -4px;
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  transition: border-color 0.25s cubic-bezier(0.32, 0.72, 0, 1), transform 0.25s cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.springen-slider-handle.springen-slider-handle-dragging {
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.springen-slider-handle:hover {
+  transform: scale(1.2);
+}
+.springen-slider-handle:focus {
+  outline: none;
+}
+.springen-slider-handle.ant-tooltip-open {
+  border-color: #1890ff;
+}
+.springen-slider:hover .springen-slider-rail {
+  background-color: #d6d6d6;
+}
+.springen-slider:hover .springen-slider-handle:not(.ant-tooltip-open) {
+  border-color: #69c0ff;
+}
+.springen-slider-step {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+}
+.springen-slider-mark-text {
+  position: absolute;
+  top: 14px;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  color: #1f1f1f;
+  word-break: keep-all;
+  cursor: pointer;
+}
+.springen-slider-disabled {
+  cursor: not-allowed;
+}
+
+.springen-slider-disabled .springen-slider-mark-text,
+.springen-slider-disabled .springen-slider-handle {
+  cursor: not-allowed;
+}
+
+[data-springen-slider-handle-tooltip] {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: #fff;
+  white-space: nowrap;
+  background-color: #393939;
+  border-radius: 6px;
+  transform: translate3d(-50%, 0, 0) scale(0.8);
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: 50% calc(100% + 4px);
+  transition: all 0.15s cubic-bezier(0.32, 0.72, 0, 1) 0.1s;
+}
+
+[data-springen-slider-handle-tooltip]::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  height: 0;
+  border-width: 5px 5px 0;
+  border-color: rgba(0, 0, 0, 0);
+  border-top-color: #393939;
+  border-style: solid;
+}
+
+[data-springen-slider-handle-tooltip-visible='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(-50%, 0, 0) scale(1);
+  transition: all 0.15s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+[data-springen-slider-range-tooltip-wrapper] {
+  position: absolute;
+  inset: 0 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.15s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+[data-springen-slider-range-tooltip-wrapper][data-springen-slider-range-tooltip-wrapper-visible='true'] {
+  opacity: 1;
+  visibility: visible;
+}
+
+[data-springen-slider-range-tooltip-wrapper-visible][data-springen-slider-range-tooltip-wrapper-combined='true']
+  [data-springen-slider-range-tooltip] {
+  color: transparent;
+}
+
+[data-springen-slider-range-tooltip-wrapper-visible][data-springen-slider-range-tooltip-wrapper-combined='true']
+  [data-springen-slider-range-tooltip-left] {
+  border-radius: 6px 0 0 6px;
+}
+
+[data-springen-slider-range-tooltip-wrapper-visible][data-springen-slider-range-tooltip-wrapper-combined='true']
+  [data-springen-slider-range-tooltip-right] {
+  border-radius: 0 6px 6px 0;
+}
+
+[data-springen-slider-range-tooltip-wrapper-visible][data-springen-slider-range-tooltip-wrapper-combined='true']
+  [data-springen-slider-range-tooltip-combined] {
+  opacity: 1;
+  visibility: visible;
+}
+
+[data-springen-slider-handle-tooltip-wrapper-visible][data-springen-slider-handle-tooltip-wrapper-overlapped='true']
+  [data-springen-slider-handle-tooltip-left] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+[data-springen-slider-range-tooltip] {
+  position: absolute;
+  bottom: 22px;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: #fff;
+  background-color: #393939;
+  border-radius: 6px;
+  transform: translate3d(-50%, 0, 0);
+}
+
+[data-springen-slider-range-tooltip]::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  height: 0;
+  border-width: 5px 5px 0;
+  border-color: transparent;
+  border-top-color: #393939;
+  border-style: solid;
+}
+
+[data-springen-slider-range-tooltip-combined] {
+  position: absolute;
+  bottom: 22px;
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 13px;
 }

@@ -25,6 +25,10 @@ const meta: MetaRecord = {
         "title": "Tag",
         "href": "/tag"
       },
+      "slider": {
+        "title": "Slider",
+        "href": "/slider"
+      },
       "pagination": {
         "title": "Pagination",
         "href": "/pagination"

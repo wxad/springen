@@ -1,4 +1,5 @@
 import React from 'react';
+import type { SliderProps } from 'rc-slider';
 
 declare global {
   interface Window {
@@ -81,4 +82,20 @@ export interface SpringenPaginationProps extends Omit<React.HTMLAttributes<HTMLD
   onChange?: (e: React.MouseEvent<HTMLDivElement>, value: number, pageSize: number) => void;
   onPageSizeChange?: (newPageSize: number, pageSize: number) => void;
   showPrevNext?: boolean;
+}
+
+export type SpringenSliderValue = number | [number, number] | undefined;
+
+export interface SpringenSliderProps<T extends SpringenSliderValue = SpringenSliderValue> extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | "defaultValue"> {
+  min?: number;
+  max?: number;
+  step?: number;
+  value?: T;
+  onChange?: (value: T) => void;
+  onChangeComplete?: (value: SpringenSliderValue) => void;
+  range?: boolean;
+  marks?: SliderProps['marks'];
+  unit?: React.ReactNode;
+  tooltipVisible?: boolean;
+  onTooltipVisibleChange?: (visible: boolean) => void;
 }

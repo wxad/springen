@@ -9,6 +9,7 @@ import Tabs from './Tabs';
 import Tag from './Tag';
 import HoverFill from './HoverFill';
 import Pagination from './Pagination';
+import Slider from './Slider';
 
 const Springen = () => <></>;
 
@@ -19,7 +20,7 @@ Springen.Tabs = Tabs;
 Springen.Tag = Tag;
 Springen.HoverFill = HoverFill;
 Springen.Pagination = Pagination;
-
+Springen.Slider = Slider;
 export * from './types';
 
 export default Springen;
