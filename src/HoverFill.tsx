@@ -137,7 +137,7 @@ const HoverFill: React.FC<SpringenHoverFillProps> = ({
 
     if (window.springenHoverFillState.bgVisible && window.springenHoverFillState.bgNode) {
       window.springenHoverFillState.bgNode.style.background =
-        hoverColor === DEFAULT_HOVER_COLOR ? activeColor : hoverColor;
+        hoverColor === DEFAULT_HOVER_COLOR || activeColor !== DEFAULT_ACTIVE_COLOR ? activeColor : hoverColor;
     }
 
     if (onMouseDown) {
